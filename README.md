@@ -14,7 +14,7 @@ How to Complete:
  - orders
  - denver cafes
  - smash bros
- - murder
+ - murder she wrote
  - tyler, the creator
  
  hard:
