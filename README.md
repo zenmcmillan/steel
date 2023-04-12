@@ -1,7 +1,7 @@
 # STEEL
 Practice problems for JavaScript focusing on array iterator methods. 
 
-##How to Complete:
+How to Complete:
  clone down the repo. all problems will be solved by console logging the expected data. no testing. run all your code inside the file that the prompts are in. Here's a very loose order, starting with the easiest to the hardest (totally subjective): 
  
  easy:
