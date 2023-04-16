@@ -7,7 +7,6 @@ How to Complete:
  easy:
  - broncos
  - concerts
- - pixar
  
  med: 
  - drag race
