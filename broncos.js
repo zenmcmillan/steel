@@ -50,9 +50,7 @@ const playerNames = () => {
 
 console.log(playerNames());
 
-
 //decrease injured players rating by 5, decrease questionable players rating by 1, and increase all other players rating by 2
-
 
 const changeRating = () => {
   broncos.forEach((person) => {
@@ -94,9 +92,45 @@ const offenseDefense = () => {
 console.log(offenseDefense());
 
 //create an array of offense players sorted by rating; high-low
+
+const offensePlayersByRating = () => {
+  return broncos
+    .filter((person) => person.side === "offense")
+    .sort((a, b) => b.rating - a.rating);
+};
+
+console.log(offensePlayersByRating());
+
 //create an array of cornerbacks, 'CB', sorted by rating; high-low
 
+const cornerBacksByRating = () => {
+  return broncos
+    .filter((person) => person.pos === "CB")
+    .sort((a, b) => b.rating - a.rating);
+};
+
+console.log(cornerBacksByRating());
+
 //create an array of players on 'injured' status
+
+const injuredPlayers = () => {
+  return broncos.filter(person => person.status === 'injured');
+}
+
+console.log(injuredPlayers())
+
 //create an array of players on 'questionable' status
+
+const questionablePlayers = () => {
+  return broncos.filter((person) => person.status === "questionable");
+};
+
+console.log(questionablePlayers());
+
 //return the length of broncos players that are not on 'injured' or 'questionable' status
 
+const activeStatus = () => {
+  return broncos.filter((person) => person.status === "active");
+};
+
+console.log(activeStatus());
