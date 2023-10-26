@@ -32,40 +32,96 @@ const crowd = {
 //Question 1:
 // Return an array of just the artists names
 
+const artistsNames = () => {
+  return artists.map((person) => person.name);
+};
 
+console.log(artistsNames());
 
 //Question 2:
 
 // Write a function that takes a name as a parameter and returns the first artist where the name matches .  ex. findByName('Jack Garratt')
+
+const findArtist = (artist) => {
+  return artists.find((person) => person.name === artist);
+};
+
+console.log(findArtist("Jack Garratt"));
 
 
 //Question 3:
 
 // Write some code to add the appropriate ticket price to each artist.
 
+const addTicketPrice = () => {
+  artists.map((person) => {
+    if (person.label === "atlantic") {
+      person.ticketPrice = ticketPrice.atlantic;
+    } else if (person.label === "virgin") {
+      person.ticketPrice = ticketPrice.virgin;
+    } else person.ticketPrice = ticketPrice.capital;
+  });
+  return artists;
+};
 
+console.log(addTicketPrice());
 
 //Question  4:
 
 // Write a function that takes a label as a parameter and returns an array containing all the artists of that label .  ex. getByLabel('atlantic')
 
+const artistsOfLabel = (label) => {
+  return artists.filter((person) => person.label === label);
+};
 
+console.log(artistsOfLabel("capital"));
 
 //Question 5:
 
 // Write some code to determine how much it would cost to go to all to the shows
 
+const costOfAllShows = () => {
+  return artists.reduce((acc, curr) => {
+    Object.keys(ticketPrice).map((element) => {
+      if (curr.label === element) {
+        acc += ticketPrice[element];
+      }
+    });
+    return acc;
+  }, 0);
+};
 
+console.log(costOfAllShows());
 
 //Question 6:
 
 // Make an object containing each label as keys and all the associated artists in an array as the value.
 
+const organizeArtistsByLabel = () => {
+  return artists.reduce((acc, curr) => {
+    acc[curr.label] = acc[curr.label] || [];
+    acc[curr.label].push(curr.name);
+    return acc;
+  }, {});
+};
 
+console.log(organizeArtistsByLabel());
 
 //Question 7:
 //write some code that will add the crowdsize to each artist
 
+const addCrowdSize = () => {
+  artists.map((person) => {
+    Object.keys(crowd).map((element) => {
+      if (person.label === element) {
+        person.crowd = crowd[element];
+      }
+    });
+  });
+  return artists;
+};
+
+console.log(addCrowdSize());
 
 
 
