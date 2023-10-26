@@ -36,13 +36,62 @@ var broncos = [
 
 //return the name of the player with the highest rating
 
+const playerWithHighestRating = () => {
+  return broncos.sort((a, b) => b.rating - a.rating)[0].name;
+};
+
+console.log(playerWithHighestRating());
+
 //return an array of the names of each player
+
+const playerNames = () => {
+  return broncos.map((person) => person.name);
+};
+
+console.log(playerNames());
+
 
 //decrease injured players rating by 5, decrease questionable players rating by 1, and increase all other players rating by 2
 
+
+const changeRating = () => {
+  broncos.forEach((person) => {
+    if (person.status === "injured") {
+      person.rating -= 5;
+    } else if (person.status === "questionable") {
+      person.rating -= 1;
+    } else person.rating += 2;
+  });
+  return broncos;
+};
+
+console.log(changeRating());
+
 //return the total number of 'offense' players
+
+const numberOfOffensePlayers = () => {
+  return broncos.filter((person) => person.side === "offense").length;
+};
+
+console.log(numberOfOffensePlayers());
+
 //return the total number of 'defense' players
+
+const numberOfDefensePlayers = () => {
+  return broncos.filter((person) => person.side === "defense").length;
+};
+
+console.log(numberOfDefensePlayers());
+
 //create an object with the keys 'offense' and 'defense' and let their values equal the total number of players on their respective side.
+
+const offenseDefense = () => {
+  const offense = broncos.filter((person) => person.side === "offense").length;
+  const defense = broncos.filter((person) => person.side === "defense").length;
+  return { offense, defense };
+};
+
+console.log(offenseDefense());
 
 //create an array of offense players sorted by rating; high-low
 //create an array of cornerbacks, 'CB', sorted by rating; high-low
