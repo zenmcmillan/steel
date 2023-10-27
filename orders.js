@@ -38,6 +38,12 @@ const orders = [
 // Level One
 // Write a function that will total up the profit of all orders.
 
+const totalProfit = () => {
+  return orders.reduce((acc, curr) => acc + curr.price, 0);
+};
+
+console.log(totalProfit());
+
 // 105
 
 // function sumProfit() {
@@ -84,7 +90,17 @@ const orders = [
 
 // totalprofit
 
+const organizeOrdersByType = () => {
+  return orders.reduce((acc, curr) => {
+    acc[curr.type] ??= { names: [], totalProfit: 0 };
+    acc[curr.type].names.push(curr.name);
+    acc[curr.type].totalProfit += curr.price;
+    return acc;
+  }, {});
+};
 
+
+console.log(organizeOrdersByType());
 
 
 // function sumProfitByType() {
@@ -181,3 +197,18 @@ const orders = [
 //     ]
 //   }
 // }
+
+const organizeOrdersByType2 = () => {
+  return orders.reduce((acc, curr) => {
+    acc[curr.type] ??= { names: [], totalProfit: 0, specialConsiderations: [] };
+    acc[curr.type].names.push(curr.name);
+    acc[curr.type].totalProfit += curr.price;
+    curr.specialConsiderations != "none"
+      ? acc[curr.type].specialConsiderations.push(curr.specialConsiderations)
+      : "";
+    return acc;
+  }, {});
+};
+
+console.log(organizeOrdersByType2());
+

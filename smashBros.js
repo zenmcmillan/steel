@@ -16,12 +16,24 @@ const restaurants = [
 //*EXPECTED OUTPUT*//
 // 6501
 
+const totalReviews = () => {
+  return restaurants.reduce((acc, curr) => acc + curr["number_of_reviews"], 0);
+};
+
+totalReviews();
+
 //=====================================================================
 
 //2. Create an object where each property is the name of a restaurant and its key value is its number of reviews.
 
+const organizeTotalReviews = () => {
+  return restaurants.reduce((acc, curr) => {
+    acc[curr.name] = curr["number_of_reviews"];
+    return acc;
+  }, {});
+};
 
-
+console.log(organizeTotalReviews());
 
 //*EXPECTED OUTPUT*//
 //{ 'Fruition Restaurant': 788,
@@ -45,9 +57,15 @@ const restaurants = [
 //   Lunch: [ 'Root Down', 'Root Down', 'The Capital Grille' ],
 //   Dinner: [ 'Acorn', 'Acorn', 'Panzano' ] }
 
+const organizeByType = () => {
+  return restaurants.reduce((acc, curr) => {
+    acc[curr.type] = acc[curr.type] || [];
+    acc[curr.type].push(curr.name);
+    return acc;
+  }, {});
+};
 
-
-
+console.log(organizeByType());
 
 
 //S'MORE!
@@ -65,6 +83,14 @@ const restaurants = [
 // Acorn: 'RiNo',
 // Panzano: 'LoDo' }
 
+const locationEating = () => {
+  return restaurants.reduce((acc, curr) => {
+    acc[curr.name] = acc[curr.name] || curr.neighborhood;
+    return acc;
+  }, {});
+};
+
+console.log(locationEating());
 
 //3B Create an object where each key is the neighborhood and its value is the name of each restaurant in that neighborhood.
 
@@ -78,7 +104,15 @@ const restaurants = [
 //   Highlands: [ 'Root Down' ],
 //   RiNo: [ 'Acorn' ] }
 
+const areaEats = () => {
+  return restaurants.reduce((acc, curr) => {
+    acc[curr.neighborhood] = acc[curr.neighborhood] || [];
+    acc[curr.neighborhood].push(curr.name);
+    return acc;
+  }, {});
+};
 
+console.log(areaEats());
 
 
 

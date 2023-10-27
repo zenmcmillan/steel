@@ -72,15 +72,40 @@ const murder = {
 //Problem 1
 //Return an array of episodes that are culturallyInsensitive
 
+const culturallyInsensitiveEpisodes = () => {
+  return murder.topFiveEpisodes.filter(
+    (episode) => episode.culturallyInsensitive
+  );
+};
+
+console.log(culturallyInsensitiveEpisodes());
+
 
 //Problem 2
 //Return the episode that includes Magnum PI
 
+const magnumPIEpisode = () => {
+  return murder.topFiveEpisodes.find((episode) =>
+    episode.synopsis.includes("Magnum PI")
+  );
+};
+
+console.log(magnumPIEpisode());
 
 //Problem 3
 //Return an array of all stars in the top five episodes array
 
+const starsFromTop5Episodes = () => {
+  let arr = [];
+  murder.topFiveEpisodes.forEach((element) => {
+    element.guestStars.forEach((element1) => {
+      arr.push(element1);
+    });
+  });
+  return arr;
+};
 
+console.log(starsFromTop5Episodes());
 
 //Level 2
 
@@ -100,7 +125,14 @@ const murder = {
     //   ]}...
     // ]
 
+const nameAndGuestStars = () => {
+  return murder.topFiveEpisodes.map((element) => ({
+    name: element.name,
+    guestStars: element.guestStars,
+  }));
+};
 
+console.log(nameAndGuestStars());
 
 
 // Problem 2
@@ -108,12 +140,29 @@ const murder = {
 // episode as the key and the synopsis as the value, 
 // e.g. [{"Curse of the Daanav": "Cursed Indian ruby"}, {"Magnum on Ice ":"Magnum PI crossover"}...]
 
+const organizeEpisodes = () => {
+  return murder.topFiveEpisodes.map((element) => ({
+    [element.name]: element.synopsis,
+  }));
+};
 
+console.log(organizeEpisodes());
 
 
 // Problem 3
 // Return one Object with all the guest stars
 
+const guestStars = () => {
+  return murder.topFiveEpisodes.reduce(
+    (acc, curr) => {
+      curr.guestStars.forEach((element) => acc.guestStars.push(element));
+      return acc;
+    },
+    { guestStars: [] }
+  );
+};
+
+console.log(guestStars());
 
 //Level 3
 
@@ -130,7 +179,13 @@ const murder = {
         // "Jessica Walter"]
 // }
 
+const organizeShow = () => {
+  return murder.topFiveEpisodes.map((episode) => ({
+    [episode.name]: episode.guestStars,
+  }));
+};
 
+console.log(organizeShow());
 
 
 
