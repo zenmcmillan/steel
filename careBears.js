@@ -491,22 +491,33 @@ const careBears = {
     // name: 'Oopsy Bear',
     // nationality: 'Care-a-Lot, Kingdom of Caring' } ]
 
+const getBear = (bearName) => {
+  return careBears.bears.filter(bear => bear.name.includes(bearName))
+}
 
-
+console.log(getBear('Oopsy'))
 
 // 2: Create an object with a tally of how many bears belong to each collection
 // Expected: { Original: 10, '90s': 16, '00s': 20, '10s': 3, Other: 3 }
 
-// const getCollectionTally = () => {
-//   return careBears.bears.reduce((tally, bear) => {
-//     tally[bear.collection]++
-//     return tally;
-//   }, { Original: 0, '90s': 0, '00s': 0, '10s': 0, Other: 0 })
-// }
+const getCollectionTally = careBears.bears.reduce((acc, curr) => {
+  acc[curr.collection] = acc[curr.collection] || 0;
+  acc[curr.collection]++;
+  return acc;
+}, {});
+
+console.log(getCollectionTally);
 
 // 3: Create an alphabetized array of Care Bear names
 // Expected: First = All My Heart Bear, Last = Work of Heart Bear
 
+const sortBearNames = () => {
+  return careBears.bears
+    .map((bear) => bear.name)
+    .sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
+};
+
+console.log(sortBearNames());
 
 // Level 3
 
@@ -519,13 +530,26 @@ const careBears = {
     // name: 'Shine Bright Bear',
     // nationality: 'Care-a-Lot, Kingdom of Caring' } ]
 
+const serachByKeyAndValue = (key, value) => {
+  return careBears.bears.find(bear => bear[key] === value)
+}
 
+console.log(serachByKeyAndValue('furColor', 'Fuchsia'))
 
 // // 5: Collect all the Care Bears by their appearanceCount number.Expected: {
 //   1: [...{Forest Friend Bear}]
 //   10: [...{Bedtime Bear}]
 // }
 
+const bearsAppearanceCount = () => {
+  return careBears.bears.reduce((acc, curr) => {
+    acc[curr.appearanceCount] = acc[curr.appearanceCount] || [];
+    acc[curr.appearanceCount].push(curr.name);
+    return acc;
+  }, {});
+};
+
+console.log(bearsAppearanceCount());
 
 
 // CHALLENGE: Create an array of words used in furColor, watch out some bears have multiple colors in an array instead of 1 color as a string.  

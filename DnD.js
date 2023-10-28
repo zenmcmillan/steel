@@ -277,16 +277,57 @@ const weapons = {
 
 
 //  1) Return the sum of the amount of damage for all the weapons that our characters can use 
-/// 431
+/// 750
 
+const sumOfAllDamages = () => {
+  return characters.reduce((acc, curr) => {
+    curr.weapons.forEach((weapon) => {
+      acc += weapons[weapon].damage;
+    });
+    return acc;
+  }, 0);
+};
+
+console.log(sumOfAllDamages());
 
 //  2) Return the sum damage, total range, and total durability for each character as an object. 
 //// [ { Ben: { damage: 35, range: 58, durability: 47 } }, { Cody: {...}, ...}
 
 
+const damageRangeEtc = () => {
+  return characters.reduce((acc, curr) => {
+    acc[curr.name] = acc[curr.name] || { damage: 0, range: 0, durability: 0 };
+    curr.weapons.forEach((weapon) => {
+      acc[curr.name].damage += weapons[weapon].damage;
+      acc[curr.name].range += weapons[weapon].range;
+      acc[curr.name].durability += weapons[weapon].durability;
+    });
+    return acc;
+  }, {});
+};
+
+console.log(damageRangeEtc());
+
 //  3) Write a function that takes in a character name as an input and returns the weapons it can use and its total damage and range.
 // characterStats('Ben') //// {weapons: [magebane, whip, axe], damage: 113, range: 34}
 
+const characterWeapons = (name) => {
+  return characters
+    .filter((person) => person.name === name)
+    .reduce(
+      (acc, curr) => {
+        acc.weapons = curr.weapons;
+        curr.weapons.forEach((weapon) => {
+          acc.damage += weapons[weapon].damage;
+          acc.range += weapons[weapon].range;
+        });
+        return acc;
+      },
+      { weapons: 0, damage: 0, range: 0 }
+    );
+};
+
+console.log(characterWeapons("Ben"));
 
 //  4) Write a function that takes in two character names as arguments and determines who will win based on who has higher total damage along with the remaining durability. // characterFight('Mike', 'Gray') //// 'Gray, -14'
 
