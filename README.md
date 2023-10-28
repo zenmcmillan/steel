@@ -18,8 +18,6 @@ How to Complete:
  
  hard:
  - care bears
- - d&d
- - denver
  - fourteeners (xxxxtra hard)
  - strong bad
  - computers

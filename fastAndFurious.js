@@ -117,6 +117,10 @@ let fastAndFurious= [
 //   'F9'
 // ]
 
+const movieNames = fastAndFurious.map((movie) => movie.name);
+
+console.log(movieNames);
+
 
 // 2. Return an array of only the movie Ludacris is not in
 // Answer :
@@ -137,28 +141,83 @@ let fastAndFurious= [
 //   }
 // ]
 
+const moviesWithoutLudacris = fastAndFurious.filter((movie) => movie.ludacris);
+
+console.log(moviesWithoutLudacris);
 
 //3 Write a function that returns the box office of a given movie based on the title
 // answer: getBoxOffice('The Fate of the Furious') => 1236000000
 // getBoxOffice("The Fast and the Furious: Tokyo Drift") => 159000000
 
+const getBoxOffice = (movieName) => {
+  return fastAndFurious.find((movie) => movie.name === movieName).moneyStuff
+    .boxOffice;
+};
+
+console.log(getBoxOffice("The Fate of the Furious"));
 
 // MED
 // 1: Return the average budget of a Fast and Furious movie as a string
 // Answer "The average Fast and Furious cost 133700000 dollars"
 
+const averageBudget = () => {
+  let budget =
+    fastAndFurious.reduce((acc, curr) => (acc += curr.moneyStuff.budget), 0) /
+    fastAndFurious.length;
+  return `The average Fast and Furious cost ${budget.toLocaleString()} dollars`;
+};
+
+console.log(averageBudget());
 
 // 2: Use iterator methods to return the string of the most profitable Fast and Furious and how much it made
 // "Furious 7 made 1285000000 dollars"
 // BONUS if you can format it like this: "Furious 7 made $1,285,000,000 dollars"  --- (also holy shit)
 
+const mostProfitableMovie = () => {
+  fastAndFurious.map((movie) => {
+    movie.profit = movie.moneyStuff.boxOffice - movie.moneyStuff.budget;
+  });
+  let sorted = fastAndFurious.sort((a, b) => b.profit - a.profit)[0];
+  return `${sorted.name} made $${sorted.profit.toLocaleString()} dollars`;
+};
 
+console.log(mostProfitableMovie());
 
 //SPICY
 // 1. Compare the average profit of a movie that included both wiz Khalifa and Ludacris versus one that had neither of them
 // Answer 730774578.83
 
+const wizLudacrisProfit = () => {
+  let wizLuda = fastAndFurious.filter(
+    (movie) => movie.ludacris && movie.wizKhalifaSingle
+  );
 
+  let wizLudaProfit = wizLuda.reduce((acc, curr) => {
+    acc +=
+      (curr.moneyStuff.boxOffice - curr.moneyStuff.budget) / wizLuda.length;
+    return acc;
+  }, 0);
+
+  let noWizLuda = fastAndFurious.filter(
+    (movie) => !movie.ludacris && !movie.wizKhalifaSingle
+  );
+
+  let noWizLudaProfit = noWizLuda.reduce((acc, curr) => {
+    acc +=
+      (curr.moneyStuff.boxOffice - curr.moneyStuff.budget) / noWizLuda.length;
+    return acc;
+  }, 0);
+  if (wizLudaProfit > noWizLudaProfit) {
+    return `On average the Fast & Furious movies made ${(
+      wizLudaProfit - noWizLudaProfit
+    ).toFixed(2)} more with Wiz Khalifa and Ludacris`;
+  }
+  return `On average the Fast & Furious movies made ${(
+    noWizLudaProfit - wizLudaProfit
+  ).toFixed(2)} more with Wiz Khalifa and Ludacris`;
+};
+
+console.log(wizLudacrisProfit());
 
 // (While not technically a Fast anf Furious, "Hobbes and Shaw" starring Dwayne "the Rock" Johnson, is part of the 
 // greater F&F cinematic universe. Add it to the array.)
