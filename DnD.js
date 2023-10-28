@@ -331,6 +331,37 @@ console.log(characterWeapons("Ben"));
 
 //  4) Write a function that takes in two character names as arguments and determines who will win based on who has higher total damage along with the remaining durability. // characterFight('Mike', 'Gray') //// 'Gray, -14'
 
+const determineWinner = (character1, character2) => {
+  const character1Damage = characters
+    .filter((person) => person.name === character1)
+    .reduce((acc, curr) => {
+      curr.weapons.forEach((weapon) => (acc += weapons[weapon].damage));
+      return acc;
+    }, 0);
+
+  const character2Damage = characters
+    .filter((person) => person.name === character2)
+    .reduce((acc, curr) => {
+      curr.weapons.forEach((weapon) => (acc += weapons[weapon].damage));
+      return acc;
+    }, 0);
+
+  let arr = [
+    { [`${character1}Damage`]: [character1Damage] },
+    { [`${character2}Damage`]: [character2Damage] },
+  ];
+
+  if (arr[0][`${character1}Damage`] - arr[1][`${character2}Damage`] > 0) {
+    let total = `${
+      character1 - arr[0][`${character1}Damage`] - arr[1][`${character2}Damage`]
+    }`;
+    return `${character1} - ${total}`;
+  }
+  let total = arr[1][`${character2}Damage`] - arr[0][`${character1}Damage`];
+  return `${character2} - ${total}`;
+};
+
+console.log(determineWinner("Mike", "Gray"));
 
 //  5) Write a function that takes two names as arguments. First name is the attacker, the second Name the defender.  Determine whether the defender will survive an attack from the attacker based on the AttackersDmg - defendersHealth. 
 // braceYourselfNerd('Timf', 'Kiel')  //// 'Kiel died'
