@@ -48,6 +48,11 @@ const computers = [
 // DIFFICULTY LEVEL: BEGINNER
 
 // Below, return the total cost of all the computers (Correct answer will return an integer: 6800)
+
+const computerCost = computers.reduce((acc, curr) => acc + curr.cost, 0);
+
+console.log(computerCost);
+
 // __________________________________________________________________________________________________________________________________
 
 // let totalCost = 0
@@ -59,6 +64,11 @@ const computers = [
 // __________________________________________________________________________________________________________________________________
 
 //Below retun an array that sorts the computers by cost low -> high (Correct answer will be an array of computer objects like below):
+
+const sortComputersByCost = computers.sort((a, b) => a.cost - b.cost);
+
+console.log(sortComputersByCost);
+
 
 // [
 //   {
@@ -145,6 +155,10 @@ console.log(computersByPrice);
 // ]
 // __________________________________________________________________________________________________________________________________
 
+const notNew = computers.filter((computer) => !computer.isNew);
+
+console.log(notNew);
+
 
 // const oldComputers = computers.filter(function(computer) {
 //   if (!computer.isNew) {
@@ -176,6 +190,7 @@ console.log(computersByPrice);
 //     accessories: ['mouse', 'keyboard', 'liquidCooling', 'headset'] 
 // }
 // __________________________________________________________________________________________________________________________________
+
 
 
 // const laptop = 
@@ -214,7 +229,10 @@ console.log(computersByPrice);
 // __________________________________________________________________________________________________________________________________
 
 
-// (*Delete this & Enter Solution For Above Here*)
+const isALaptop = computers.find((computer) => computer.isLaptop);
+
+console.log(isALaptop);
+
 
 
 
@@ -229,10 +247,9 @@ console.log(computersByPrice);
 
 // __________________________________________________________________________________________________________________________________
 
+const newComputers = computers.filter((computer) => computer.isNew).length;
 
-// (*Delete this & Enter Solution For Above Here*)
-
-
+console.log(newComputers);
 
 // __________________________________________________________________________________________________________________________________
 
@@ -272,12 +289,13 @@ console.log(computersByPrice);
 //   }
 // ]
 
-
-
-
 // __________________________________________________________________________________________________________________________________
 
-// (*Delete this & Enter Solution For Above Here*)
+const thirtyTwoGBRam = computers
+  .filter((computer) => computer.components.ram === "32GB")
+  .sort((a, b) => a.cost - b.cost);
+
+console.log(thirtyTwoGBRam);
 
 // __________________________________________________________________________________________________________________________________
 
@@ -312,7 +330,14 @@ console.log(computersByPrice);
 
 // __________________________________________________________________________________________________________________________________
 
-// (*Delete this & Enter Solution For Above Here*)
+const nvidiaTech = computers.filter(
+  (computer) =>
+    computer.components.gpu.includes("Nvidia") ||
+    computer.components.gpu.includes("NVIDIA")
+);
+
+console.log(nvidiaTech);
+
 
 // __________________________________________________________________________________________________________________________________
 
@@ -331,8 +356,18 @@ console.log(computersByPrice);
 
 
 // __________________________________________________________________________________________________________________________________
+const allAccessories = () => {
+  let arr = [];
+  computers.forEach((obj) => {
+    obj.accessories.forEach((gadget) => {
+      !arr.includes(gadget) ? arr.push(gadget) : "";
+    });
+  });
+  return arr.sort();
+};
 
-// (*Delete this & Enter Solution For Above Here*)
+console.log(allAccessories());
+
 
 // __________________________________________________________________________________________________________________________________
 
@@ -362,7 +397,26 @@ console.log(computersByPrice);
 
 // __________________________________________________________________________________________________________________________________
 
-// (*Delete this & Enter Solution For Above Here*)
+const accessoryCount = () => {
+  let answer = computers.reduce((acc, curr) => {
+    curr.accessories.forEach((item) => {
+      acc[item] = acc[item] || 0;
+      Object.keys(acc).forEach((key) => {
+        item === key ? acc[item]++ : 0;
+      });
+    });
+    return acc;
+  }, {});
+  return Object.keys(answer)
+    .sort()
+    .reduce((acc, curr) => {
+      acc[curr] = answer[curr];
+      return acc;
+    }, {});
+};
+
+console.log(accessoryCount());
+
 
 // __________________________________________________________________________________________________________________________________
 
@@ -380,7 +434,21 @@ console.log(computersByPrice);
 
 // __________________________________________________________________________________________________________________________________
 
-// (*Delete this & Enter Solution For Above Here*)
+const organizeComponents = () => {
+  return computers.reduce((acc, curr) => {
+    Object.keys(curr.components).forEach((comp) => {
+      acc[comp] = acc[comp] || [];
+      !acc[comp].includes(curr.components[comp])
+        ? acc[comp].push(curr.components[comp])
+        : "";
+    });
+    acc["gpu"].sort((a, b) => (a > b ? -1 : b > a ? 1 : 0));
+    acc["cpu"].sort((a, b) => (a > b ? -1 : b > a ? 1 : 0));
+    return acc;
+  }, {});
+};
+
+console.log(organizeComponents());
 
 // __________________________________________________________________________________________________________________________________
 

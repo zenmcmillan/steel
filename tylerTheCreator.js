@@ -52,6 +52,60 @@ let tylerTheCreator = {
     }]
 }
 
+let tylerTheCreator = {   
+    currentAge: 32,
+    albums: [
+    {
+    name: "Goblin",
+    grammy: false,
+    date: "5/11/2011",
+    year: 2011,
+    hat: true
+    },
+    {
+    name: "Wolf",
+    grammy: false,
+    date: "4-2-2013",
+    year: 2013,
+    hat: true
+    },
+    {
+    name: "Cherry Bomb",
+    grammy: false,
+    date: "07/21/17",
+    year: 2015,
+    hat: false
+    },
+    {
+    name: "Flower Boy",
+    grammy: false,
+    date: "07/21/2017",
+    year: 2017,
+    hat: true
+    },
+    {
+    name: "IGOR",
+    grammy: true,
+    dateReleased: "5/17/2019",
+    year: 2019,
+    hat: false
+    },
+    {
+    name: "CALL ME IF YOU GET LOST",
+    grammy: true,
+    date: "6/25/2021",
+    year: 2021,
+    hat: true
+    },
+    {
+    name: "CALL ME IF YOU GET LOST: The Estate Sale",
+    grammy: false,
+    date: "3/31/2023",
+    year: 2023,
+    hat: true
+    }]
+}
+
 // MILD
 
 // 1: return an array of albums that tyler wore a hat on
